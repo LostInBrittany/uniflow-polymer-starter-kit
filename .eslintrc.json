@@ -1,5 +1,8 @@
 {
-  "extends": ["eslint:recommended", "google"],
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
   "env": {
     "browser": true
   },
@@ -8,9 +11,21 @@
   ],
   "rules": {
     "no-var": "off",
-    "new-cap": ["error", { "capIsNewExceptions": ["Polymer"] }]
+    "new-cap": [
+      "error",
+      {
+        "capIsNewExceptions": [
+          "Polymer"
+        ]
+      }
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
   },
   "globals": {
-    "Polymer": true
+    "Polymer": true,
+    "UniFlow": true,
+    "myApp": true
   }
 }

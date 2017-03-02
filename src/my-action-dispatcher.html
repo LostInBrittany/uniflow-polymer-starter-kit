@@ -1,6 +1,6 @@
 <!--
 @license MIT
-Copyright (c) 2017 Horacio "LostInBrittany" Gonzalez
+Copyright (c) 2017 Horacio 'LostInBrittany' Gonzalez
 -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/uniflow-polymer/action-dispatcher.html">
@@ -14,77 +14,71 @@ Copyright (c) 2017 Horacio "LostInBrittany" Gonzalez
 
     myApp.actions = {
 
-      INIT_APPLICATION: "INIT_APPLICATION",
-      BACK: "BACK",
-      CHANGE_PAGE: "CHANGE_PAGE",
-      ROUTE_CHANGED: "ROUTE_CHANGED" 
-
-    }
+      INIT_APPLICATION: 'INIT_APPLICATION',
+      BACK: 'BACK',
+      CHANGE_PAGE: 'CHANGE_PAGE',
+      ROUTE_CHANGED: 'ROUTE_CHANGED',
+    };
 
     myApp.pages = {
-      VIEW1: "view1",
-      VIEW2: "view2",
-      VIEW3: "view3",
-      VIEW404: "view404"
-    } 
+      VIEW1: 'view1',
+      VIEW2: 'view2',
+      VIEW3: 'view3',
+      VIEW404: 'view404',
+    };
 
     Polymer({
-      is: "my-action-dispatcher",
+      is: 'my-action-dispatcher',
 
       behaviors: [
         UniFlow.ActionDispatcher,
-        UniFlow.ActionEmitter
+        UniFlow.ActionEmitter,
       ],
 
       properties: {
 
         _isReady: {
           type: Boolean,
-          value: false
+          value: false,
         },
       },
 
       /**
-       * We initalise the state with an history array 
+       * We initalise the state with an history array
        */
-      ready: function() {        
+      ready: function() {
         this.state = {
-          history: []
-        }
+          history: [],
+        };
         this._isReady = true;
       },
 
-      //  Actions listeners            
-      
+      //  Actions listeners
+
       [myApp.actions.INIT_APPLICATION]: function() {
         // Called after application has been initialized
-      },      
+      },
 
       [myApp.actions.BACK]: function() {
         // Called when a back button has been pressed
-      },        
+      },
 
-      /**
-       * On route change we historise the route in state.history  
-       */
+      // On route change we historise the route in state.history
       [myApp.actions.ROUTE_CHANGED]: function(details) {
-        console.debug("myApp.actions.ROUTE_CHANGED", details, this.state);  
-        this.push("state.history", details.pageId);
+        // console.debug('myApp.actions.ROUTE_CHANGED', details, this.state);
+        this.push('state.history', details.pageId);
       },
 
       [myApp.actions.CHANGE_PAGE]: function(details) {
         // Called when changing pages
-        console.debug("myApp.actions.CHANGE_PAGE", details, window.location);        
-        var location = "/"+details.pageId;
-        // If we aren't already in location, we change the location        
+        // console.debug('myApp.actions.CHANGE_PAGE', details, window.location);
+        var location = '/'+details.pageId;
+        // If we aren't already in location, we change the location
         if (location != window.location.pathname) {
           window.history.pushState({}, null, location);
           window.dispatchEvent(new CustomEvent('location-changed'));
         }
-      },      
-             
-            
-
+      },
     });
   </script>
 </dom-module>

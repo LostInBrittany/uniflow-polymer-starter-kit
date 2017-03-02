@@ -125,7 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         routeData: {
           type: Object,
-          observer: '_onRouteChanged'
+          observer: '_onRouteChanged',
         },
       },
 
@@ -138,7 +138,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.set('page', newRoute.page || 'view1');
         this.emitAction({
           type: myApp.actions.ROUTE_CHANGED,
-          pageId: this.page
+          pageId: this.page,
         });
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
@@ -161,7 +161,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Emits a CHANGE_PAGE action
         this.emitAction({
           type: myApp.actions.CHANGE_PAGE,
-          pageId: evt.target.getAttribute('name')
+          pageId: evt.target.getAttribute('name'),
         });
       },
     });

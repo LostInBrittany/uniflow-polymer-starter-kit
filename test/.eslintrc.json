@@ -6,5 +6,8 @@
     "assert": false,
     "fixture": false,
     "WCT": false
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
   }
 }
