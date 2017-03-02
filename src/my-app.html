@@ -125,29 +125,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         routeData: {
           type: Object,
-          observer: "_onRouteChanged"
+          observer: '_onRouteChanged'
         },
       },
 
 
-
       _onRouteChanged: function(newRoute, oldRoute) {
-        if (!newRoute || (!!oldRoute && newRoute.page == oldRoute.page)) {          
+        if (!newRoute || (!!oldRoute && newRoute.page == oldRoute.page)) {
           return;
-        }       
-        console.debug("[my-app] _onRouteChanged", newRoute, oldRoute);
-        this.set("page", newRoute.page || 'view1');        
+        }
+        // console.debug("[my-app] _onRouteChanged", newRoute, oldRoute);
+        this.set("page", newRoute.page || 'view1');
         this.emitAction({
           type: myApp.actions.ROUTE_CHANGED,
           pageId: this.page
-        });           
+        });
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
         }
       },
 
       _pageChanged: function(page) {
-        console.debug("[my-app] _pageChanged", page);
+        // console.debug("[my-app] _pageChanged", page);
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
@@ -158,12 +157,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _changePage: function(evt) {
-        console.debug("[my-app] _changePage", evt.target.getAttribute("name"));
+        // console.debug("[my-app] _changePage", evt.target.getAttribute("name"));
         // Emits a CHANGE_PAGE action
         this.emitAction({
           type: myApp.actions.CHANGE_PAGE,
           pageId: evt.target.getAttribute("name")
-        });        
+        });
       },
     });
   </script>
